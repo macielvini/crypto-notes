@@ -46,4 +46,13 @@ export class AuthService {
 
     return { accessToken: token };
   }
+
+  async checkToken(token: string) {
+    try {
+      const data = await this.jwtService.verify(token);
+      return data;
+    } catch (error) {
+      throw new UnauthorizedException();
+    }
+  }
 }
