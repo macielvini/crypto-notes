@@ -14,6 +14,10 @@ export class UsersRepository {
     return this.prisma.user.findMany();
   }
 
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+
   async create(body: CreateUserDto) {
     return this.prisma.user.create({ data: body });
   }
